@@ -7,9 +7,12 @@ public class EvChargingStationService {
 	boolean add(EvChargingStation evChargingStation) {
 		
 		return false;
+		
 	}
 	
 	void initLoadChargingStations() {
+		
+		
 		
 	}
 	
