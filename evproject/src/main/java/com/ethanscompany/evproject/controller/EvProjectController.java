@@ -3,17 +3,20 @@ package com.ethanscompany.evproject.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ethanscompany.evproject.model.EvChargingStation;
+import com.ethanscompany.evproject.service.EvChargingStationService;
 
 @RestController
 public class EvProjectController {
 	
-	List<EvChargingStation> evChargingStations = new ArrayList<>();
+	@Autowired
+	EvChargingStationService service;
 	
 	@GetMapping("/test")
 	public String test() {
@@ -23,7 +26,6 @@ public class EvProjectController {
 	@PostMapping("/evChargingStations")
 	public boolean addEvChargingStation(@RequestBody(required=false) EvChargingStation evChargingStation) {
 		if(evChargingStation != null) {
-			evChargingStations.add(evChargingStation);
 			return true;
 		}
 			
@@ -33,7 +35,7 @@ public class EvProjectController {
 	
 	@GetMapping("/evChargingStations")
 	public List<EvChargingStation> getChargingStation() {
-		return evChargingStations;
+		return service.initLoadChargingStations();
 	}
 
 }
