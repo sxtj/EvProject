@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 import com.ethanscompany.evproject.model.EvChargingStation;
 import com.ethanscompany.evproject.model.Level;
 import com.ethanscompany.evproject.model.Location;
+import com.google.gson.Gson;
 
 @Service
 public class EvChargingStationService {
 	
 	List<EvChargingStation> allEvChargingStations = new ArrayList<>();	
-	boolean add(EvChargingStation evChargingStation) {
+	
+	public boolean addEvChargingStation(EvChargingStation evChargingStation) {
+		
+		allEvChargingStations.add(evChargingStation);
 		
 		return false;
 		
@@ -40,6 +44,10 @@ public class EvChargingStationService {
 		cascadeEvStation.setLevel(Level.LEVEL_2);
 		cascadeEvStation.setStatus(true);
 		cascadeEvStation.setPricePerKWH(0.39);
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(cascadeEvStation);
+		System.out.println(json);
 		
 		allEvChargingStations.add(manitouEvStation);
 		allEvChargingStations.add(cascadeEvStation);

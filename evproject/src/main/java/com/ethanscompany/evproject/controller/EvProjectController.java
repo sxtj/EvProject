@@ -26,6 +26,7 @@ public class EvProjectController {
 	@PostMapping("/evChargingStations")
 	public boolean addEvChargingStation(@RequestBody(required=false) EvChargingStation evChargingStation) {
 		if(evChargingStation != null) {
+			service.addEvChargingStation(evChargingStation);
 			return true;
 		}
 			
